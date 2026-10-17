@@ -443,3 +443,26 @@ distances, previous_nodes = dijkstra(graph_game_map, "База")
 path = get_path(previous_nodes, "Печера_дракона")
 print(f"Час поїздки: {distances["Печера_дракона"]} очок руху")
 print(f"Шлях поїздки: {' -> '.join (path)}")
+
+
+def min_cost(N):
+    dp = [0] * (N + 1)
+
+    for i in range(1, N + 1):
+        dp[i] = dp[i - 1] + 2
+
+        if i >= 3:
+            dp[i] = min(dp[i], dp[i - 3] + 5)
+        else:
+            dp[i] = min(dp[i], 5)
+
+        if i >= 7:
+            dp[i] = min(dp[i], dp[i - 7] + 10)
+        else:
+            dp[i] = min(dp[i], 10)
+
+    return dp[N]
+
+
+N = int(input())
+print(min_cost(N))
