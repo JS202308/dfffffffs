@@ -73,124 +73,124 @@ import math
 # print(look_for_let("swiss"))
 
 # Реалізуйте клас HashTable з мультиплікативним хешуванням та методами для роботи з таблицею.
-A = 0.6180339887
+# A = 0.6180339887
 # Підказка:
 # h(k) = math.floor(m × (k × A mod 1))
 
-class Hash:
-    def __init__(self, size=10):
-        self.size = size
-        self.table = [[] for _ in range(size)]
+# class Hash:
+#     def __init__(self, size=10):
+#         self.size = size
+#         self.table = [[] for _ in range(size)]
 
-    def _hash(self, key):
-        return math.floor(self.size * (hash(key) * A % 1))
+#     def _hash(self, key):
+#         return math.floor(self.size * (hash(key) * A % 1))
 
-    def insert(self, key, value):
-        idx = self._hash(key)
-        self.table[idx].append((key, value))
+#     def insert(self, key, value):
+#         idx = self._hash(key)
+#         self.table[idx].append((key, value))
 
-    def search(self, key):
-        idx = self._hash(key)
-        for item in self.table[idx]:
-            if item[0] == key:
-                return item[1]
+#     def search(self, key):
+#         idx = self._hash(key)
+#         for item in self.table[idx]:
+#             if item[0] == key:
+#                 return item[1]
 
-    def delete(self, key):
-        idx = self._hash(key)
-        for i in range(len(self.table[idx])):
-            if self.table[idx][i][0] == key:
-                value = self.table[idx][i][1]
-                del self.table[idx][i]
-                return value
+#     def delete(self, key):
+#         idx = self._hash(key)
+#         for i in range(len(self.table[idx])):
+#             if self.table[idx][i][0] == key:
+#                 value = self.table[idx][i][1]
+#                 del self.table[idx][i]
+#                 return value
 
-    def __str__(self):
-        return str(self.table)
+#     def __str__(self):
+#         return str(self.table)
 
 
-size = 10
-key = "Hello word!"
-h_key = abs(hash(key)) % 2**32
-normalize_key = h_key / 2**32
-# print(normalize_key * A)
+# size = 10
+# key = "Hello word!"
+# h_key = abs(hash(key)) % 2**32
+# normalize_key = h_key / 2**32
+# # print(normalize_key * A)
 
-h = math.floor(size*((normalize_key * A) % 1))
+# h = math.floor(size*((normalize_key * A) % 1))
 # print(h)
 
 # Лінійне зондування
-def linear_probe(hash_table, key, m):
-    index = key % m
-    for i in range(m):
-        pos = (index + i) % m
-        if hash_table[pos] is None:
-            return pos
-    return None
+# def linear_probe(hash_table, key, m):
+#     index = key % m
+#     for i in range(m):
+#         pos = (index + i) % m
+#         if hash_table[pos] is None:
+#             return pos
+#     return None
 
 # Квадратичне зондування
-def quadratic_probe(hash_table, key, m, c1=1, c2=3):
-    index = key % m
-    for i in range(m):
-        pos = (index + c1 * i + c2 * i * i) % m
-        if hash_table[pos] is None:
-            return pos
-    return None
+# def quadratic_probe(hash_table, key, m, c1=1, c2=3):
+#     index = key % m
+#     for i in range(m):
+#         pos = (index + c1 * i + c2 * i * i) % m
+#         if hash_table[pos] is None:
+#             return pos
+#     return None
 
 # Подвійне гешування
-def double_hashing(hash_table, key, m):
-    h1 = key % m
-    h2 = 1 + (key % (m - 1))
-    for i in range(m):
-        pos = (h1 + i * h2) % m
-        if hash_table[pos] is None:
-            return pos
-    return None
+# def double_hashing(hash_table, key, m):
+#     h1 = key % m
+#     h2 = 1 + (key % (m - 1))
+#     for i in range(m):
+#         pos = (h1 + i * h2) % m
+#         if hash_table[pos] is None:
+#             return pos
+#     return None
 
 # Реалізуйте функцію mod_hash_list(keys, m),
 # яка приймає список чисел та параметр m (розмір геш‑таблиці).
 # Обчисліть хеш‑значення для кожного ключа за формулою: h(k) = k mod m
 # Проведіть тестування для заданого списку ключів.
 
-def mod_hash_list(keys, m):
-    hash_keys = []
-    for key in keys:
-        hash_keys.append(key % m)
-    return hash_keys
+# def mod_hash_list(keys, m):
+#     hash_keys = []
+#     for key in keys:
+#         hash_keys.append(key % m)
+#     return hash_keys
     
 
-keys = [123, 456, 789, 101112, 131415, 161718]
-m = 10
+# keys = [123, 456, 789, 101112, 131415, 161718]
+# m = 10
 # print("Модульне гешування (m=10):", mod_hash_list(keys, m))
 
 # Дано функцію analyze_mod_hash. Доповніть її так,
 # щоб вона виводила всі ключі що колізують (мають однакове хеш-значення).
 
 
-def analyze_mod_hash(keys, m):
-    # Ваше завдання: знайдіть та виведіть колізії
-    # Підказка: використайте словник де ключ — хеш, значення — список ключів
-    collisions = {}
-    for key in keys:
-        h = key % m
-        if h not in collisions:
-            collisions[h] = []
+# def analyze_mod_hash(keys, m):
+#     # Ваше завдання: знайдіть та виведіть колізії
+#     # Підказка: використайте словник де ключ — хеш, значення — список ключів
+#     collisions = {}
+#     for key in keys:
+#         h = key % m
+#         if h not in collisions:
+#             collisions[h] = []
 
-        collisions[h].append(key)
+#         collisions[h].append(key)
 
-    for h, bucket in collisions.items():
-        if len(bucket) > 1:
-            print(f"h={h}: {bucket}")
+#     for h, bucket in collisions.items():
+#         if len(bucket) > 1:
+#             print(f"h={h}: {bucket}")
 
-keys = list(range(1, 30))  # невеликий список щоб зручно читати
-m = 7
-analyze_mod_hash(keys, m)
+# keys = list(range(1, 30))  # невеликий список щоб зручно читати
+# m = 7
+# analyze_mod_hash(keys, m)
 
-def insert_linear(table: list, key: int, m: int) -> int:
-    index = key % m
-    for i in range(m):
-        pos = (index + i) % m
-        if table[pos] is None or table[pos] == "DELETED":
-            table[pos] = key
-            return pos
-    return -1
+# def insert_linear(table: list, key: int, m: int) -> int:
+#     index = key % m
+#     for i in range(m):
+#         pos = (index + i) % m
+#         if table[pos] is None or table[pos] == "DELETED":
+#             table[pos] = key
+#             return pos
+#     return -1
 
 # Тест:
 # table1 = [None] * 5
@@ -202,13 +202,13 @@ def insert_linear(table: list, key: int, m: int) -> int:
 # яка повертає список із перших steps індексів за формулою:
 # pos = (key % m + c1 * i + c2 * i^2) % m
 
-def get_quadratic_probe_sequence(key, m, c1, c2, steps):
-    sequence = []
-    for i in range( steps):
-        pos = (key % m + c1 * i + c2 * i^2) % m
-        sequence.append(pos)
+# def get_quadratic_probe_sequence(key, m, c1, c2, steps):
+#     sequence = []
+#     for i in range( steps):
+#         pos = (key % m + c1 * i + c2 * i^2) % m
+#         sequence.append(pos)
 
-    return sequence
+#     return sequence
 
 
 # print("Задача 4. Послідовність індексів:", get_quadratic_probe_sequence(key=7, m=11, c1=1, c2=3, steps=4))
@@ -220,20 +220,157 @@ def get_quadratic_probe_sequence(key, m, c1, c2, steps):
 # pos = (h1 + i * h2) % m
 
 
-def insert_double_hashing(table: list, key: int, m: int):
-    h1 = key % m
-    h2 = 1 + (key % (m - 1))
+# def insert_double_hashing(table: list, key: int, m: int):
+#     h1 = key % m
+#     h2 = 1 + (key % (m - 1))
 
-    for i in range(m):
-        pos = (h1 + i * h2) % m
-        if table[pos] is None:
-            table[pos] = key
-            return pos 
-    return None
+#     for i in range(m):
+#         pos = (h1 + i * h2) % m
+#         if table[pos] is None:
+#             table[pos] = key
+#             return pos 
+#     return None
 
 
 # Тест:
-t7 = [None] * 7
-insert_double_hashing(t7, 7, 7)   # h1 = 0, h2 = 1 + (7%6) = 2 -> слот 0
-insert_double_hashing(t7, 14, 7)  # h1 = 0 (колізія), h2 = 1 + (14%6) = 3 -> i=1: (0 + 3) % 7 = 3
-print("Задача 7. Таблиця (подвійне гешування):", t7)  # [7, None, None, 14, None, None, None]
+# t7 = [None] * 7
+# insert_double_hashing(t7, 7, 7)   # h1 = 0, h2 = 1 + (7%6) = 2 -> слот 0
+# insert_double_hashing(t7, 14, 7)  # h1 = 0 (колізія), h2 = 1 + (14%6) = 3 -> i=1: (0 + 3) % 7 = 3
+# print("Задача 7. Таблиця (подвійне гешування):", t7)  # [7, None, None, 14, None, None, None]
+
+# Умова: Дано список слів. Згрупуйте їх у словник за кількістю літер.
+# Приклад: ["cat", "dog", "apple", "home", "car"]
+# -> {3: ['cat', 'dog', 'car'], 5: ['apple'], 4: ['home']}
+
+
+
+# def dano_pusok(words: list):
+#     result = {}
+#     for word in words:
+#         length = len(word)
+#         if length not in result:
+#             result[length] = []
+#         result[length].append(word)
+#     return result
+
+# Умова: Масив містить імена кандидатів, за яких віддали голоси.
+# Знайдіть кандидата, який набрав найбільшу кількість голосів.
+# Приклад: ["Олена", "Ігор", "Олена", "Андрій", "Ігор", "Олена"] -> "Олена"
+
+# def dano_holos(names: list):
+#     vote_count = {}
+#     for name in names:
+#         vote_count[name] = vote_count.get(name, 0) + 1
+
+
+#     winner = max(vote_count, key=vote_count.get)
+#     return winner
+
+# candidates = ["Олена", "Ігор", "Олена", "Андрій", "Ігор", "Олена"]
+# print(dano_holos(candidates))
+
+# Умова: Дано словник синонімів/перекладів.
+# Замініть у реченні всі відомі слова відповідно до словника.
+# Приклад:
+# Словник: {"cat": "кіт", "dog": "пес"}
+# Речення: "my cat and your dog" -> "my кіт and your пес"
+
+# def translate(my_string: str, uptade_translate_dict: dict = {}):
+#     translate_dict = {"cat": "кіт", "dog": "пес"}
+#     translate_dict.update(uptade_translate_dict)
+#     results = []
+#     words = my_string.split()
+#     for word in words:
+#         results.append(translate_dict.get(word, word) for word in words)
+#     return " ".join(results)
+
+# print(translate("my cat and your dog", {"my": "мій"}))
+
+
+
+
+#     def delete(self, key):
+#         idx = self._hash(key)
+#         for i in range(len(self.table[idx])):
+#             if self.table[idx][i][0] == key:
+#                 value = self.table[idx][i][1]
+#                 del self.table[idx][i]
+#                 return value
+
+#     def __str__(self):
+#         return str(self.table)
+
+# class NumberPhone:
+#     def __init__(self, size=10):
+#         self.size = size
+#         self.table = [[] for _ in range(size)]
+
+#     def _hash(self, key):
+#         return hash(key) % self.size
+
+#     def add_contact(self, key, value):
+#         idx = self._hash(key)
+#         self.table[idx].append((key, value))
+
+#     def get_phone(self, key):
+#         idx = self._hash(key)
+#         for item in self.table[idx]:
+#             if item[0] == key:
+#                 return item[1]
+#         return "Contact not found pliz bro go add cej one"
+
+#     def delete_contact(self, key):
+#         idx = self._hash(key)
+#         for i in range(len(self.table[idx])):
+#             if self.table[idx][i][0] == key:
+#                 value = self.table[idx][i][1]
+#                 del self.table[idx][i]
+#                 return value
+#         return "Contact not found pliz bro go add cej one"
+
+#     def __str__(self):
+#         return str(self.table)
+
+
+# pb = NumberPhone()
+# pb.add_contact("Олексій", "+380501234567")
+# print(pb.get_phone("Олексій"))  # "+380501234567"
+# pb.delete_contact("Олексій")
+# print(pb.get_phone("Олексій"))  # "Контакт не знайдено"
+# coins = [2, 10, 5, 1]
+# sum_coin = 27 # 10, 10, 5, 2 = 4
+
+# def optimize_coins(coins: list, sum_coin):
+#     result = []
+#     coins.sort(reverse=True)
+#     for coin in coins:
+#         while sum_coin > coin:
+#             sum_coin -= coin
+#             result.append(coin)
+#     return result
+    
+# Розробіть функцію, яка не лише знаходить мінімальну
+# кількість монет для здачі суми, а й повертає кількість використаних монет кожного типу.
+
+def coin_change(coins, amount):
+    change_count = {}
+    sorted_coins = sorted(coins, reverse=True)
+
+    for coin in sorted_coins:
+        if amount <= 0:
+            break
+
+        if amount >= coin:
+            count = amount // coin
+            change_count[coin] = count
+            amount -= coin * count
+    if amount > 0:
+        return "Bro ja ne mozhu tobi vydaty isnujuchimi monetamy"
+
+    return change_count
+
+
+coins = [25, 10, 5, 1]
+amount = 63
+print("Монети для здачі:", coin_change(coins, amount))
+
